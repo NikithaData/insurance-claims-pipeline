@@ -6,7 +6,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("catalog", "workspace")          # Free Edition default catalog
+dbutils.widgets.text("catalog", "databricks_course_ws")          # Free Edition default catalog
 dbutils.widgets.text("schema", "insurance_claims")
 
 CATALOG = dbutils.widgets.get("catalog")
