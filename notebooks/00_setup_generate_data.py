@@ -21,14 +21,14 @@ N_CLAIMS = int(dbutils.widgets.get("n_claims"))
 import os
 import sys
 
-# The generator lives in ../data_generator inside this Git folder
-sys.path.append(os.path.abspath("../data_generator"))
-import generate_claims  # noqa: E402
+dbutils.widgets.dropdown("regenerate", "false", ["false", "true"])
+REGENERATE = dbutils.widgets.get("regenerate") == "true"
 
-generate_claims.main(n_claims=N_CLAIMS, out=RAW_PATH)
+already_landed = os.path.exists(f"{RAW_PATH}/claims/claims.csv")
 
-# COMMAND ----------
-
-for table in TABLES:
-    files = dbutils.fs.ls(f"{RAW_PATH}/{table}")
-    print(table, "->", [f.name for f in files])
+if already_landed and not REGENERATE:
+    print("Source files already landed - skipping generation (set regenerate=true to overwrite).")
+else:
+    sys.path.append(os.path.abspath("../data_generator"))
+    import generate_claims  # noqa: E402
+    generate_claims.main(n_claims=N_CLAIMS, out=RAW_PATH)
