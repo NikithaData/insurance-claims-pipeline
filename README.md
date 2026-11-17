@@ -40,7 +40,7 @@ GOLD     fact_claims, dim_customer, dim_policy, dim_date, KPI tables
 
 All steps run as one **Databricks Job** (Lakeflow Jobs): `setup → bronze → silver → gold → validation`.
 
-![Job run](docs/job_run.png)
+![Job run](docs/job_run1.png)
 
 ---
 
