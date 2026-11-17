@@ -1,0 +1,17 @@
+# Generated data (recreate with data_generator/generate_claims.py)
+data/
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+*.pem
